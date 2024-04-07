@@ -1,10 +1,11 @@
+// TextArea.js
 import React, { useState } from 'react';
 
-const CustomInput = ({ placeholder }) => {
+const TextArea = () => {
   const [isFocused, setIsFocused] = useState(false);
   
   return (
-    <input
+    <textarea
       style={{
         fontSize: '20px',
         borderWidth: '2px',
@@ -17,11 +18,11 @@ const CustomInput = ({ placeholder }) => {
         outline: 'none',
         marginBottom: '10px',
       }}
-      placeholder={placeholder} // Use the placeholder prop here
+      placeholder="description"
       onFocus={() => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}
     />
   );
 };
 
-export default CustomInput;
+export default TextArea;

@@ -30,19 +30,12 @@ function Layout({children}) {
 const Container = styled.div`
   display: grid;
   grid-template-columns: 20% 80%;
-  height: 100%;
-  background-color: violet;
 `;
 
 const ContentDiv = styled.div`
   padding: 2rem;
   background-color: white;
 
-`;
-
-const StyledDiv = styled.div`
-  display: flex;
-  background-color:  #0056b3;
 `;
 
 const StyledButton = styled.button`
