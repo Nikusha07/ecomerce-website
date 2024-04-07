@@ -1,17 +1,15 @@
 import Nav from "./nav";
 
-import { useSession, signIn, signOut } from "next-auth/react";
-import styled, { css } from 'styled-components';
+import { useSession, signIn } from "next-auth/react";
+import styled, { css } from "styled-components";
 
-function Layout({children}) {
+function Layout({ children }) {
   const { data: session } = useSession();
   if (!session) {
     return (
       <div>
         <div className="text-center w-full">
-          <StyledButton
-            onClick={() => signIn("google")}
-          >
+          <StyledButton onClick={() => signIn("google")}>
             Login With Google ..
           </StyledButton>
         </div>
@@ -21,9 +19,7 @@ function Layout({children}) {
   return (
     <Container>
       <Nav />
-      <ContentDiv>
-        {children}
-      </ContentDiv>
+      <ContentDiv>{children}</ContentDiv>
     </Container>
   );
 }
@@ -35,10 +31,9 @@ const Container = styled.div`
 const ContentDiv = styled.div`
   padding: 2rem;
   background-color: white;
-
 `;
 
-const StyledButton = styled.button`
+const StyledButton = styled.div`
   ${({ theme }) => css`
     background-color: #007bff;
     color: #fff;
@@ -53,7 +48,11 @@ const StyledButton = styled.button`
     }
   `}
 
-  ${props => props.tw && css`${props.tw}`}
+  ${(props) =>
+    props.tw &&
+    css`
+      ${props.tw}
+    `}
 `;
 
 export default Layout;

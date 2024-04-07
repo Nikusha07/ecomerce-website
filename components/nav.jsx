@@ -24,9 +24,9 @@ const NavLink = styled.a`
   display: flex;
   gap: 2px;
   align-items: center;
-  color: ${({ isActive }) => isActive ? 'blue' : 'white'};
-  background-color: ${({ isActive }) => isActive ? 'white' : 'transparent'};
-  border-radius: ${({ isActive }) => isActive ? '10px' : '0'};
+  color: ${({ isactive }) => isactive ? 'blue' : 'white'}; // Change prop name to isactive
+  background-color: ${({ isactive }) => isactive ? 'white' : 'transparent'};
+  border-radius: ${({ isactive }) => isactive ? '10px' : '0'};
   text-decoration: none;
   margin-right: 1rem;
   padding: 0.5rem;
@@ -42,7 +42,6 @@ const NavLink = styled.a`
     text-decoration: underline;
   }
 `;
-
 export default function Nav() {
   const handleLinkClick = (index) => {
     setActiveLink(index);
