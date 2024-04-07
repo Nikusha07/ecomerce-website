@@ -35,7 +35,7 @@ export default function Product() {
         </thead>
         <tbody>
           {products.map((product) => (
-            <tr>
+            <tr key={product._id}>
               <td className="text-black">{product.title}</td>
               <td>
                 <Link
