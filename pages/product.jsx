@@ -53,7 +53,7 @@ export default function Product() {
                   passHref 
                 >
                   <h1 className="bg-blue-900 inline-flex flex-row text-white rounded-md py-1 px-2">
-                    <EditIcon className="w-[18px] h-[18]" />
+                  <EditIcon className="w-6" />
                     Edit
                   </h1>
                 </Link>
@@ -61,7 +61,7 @@ export default function Product() {
                   onClick={() => handleDelete(product._id)}
                   className="bg-red-500 inline-flex items-center gap-[5px] flex-row text-white rounded-md py-1 px-2"
                 >
-                  <DeleteIcon className="w-[18px] h-[18]" />
+                  <DeleteIcon/>
                   Delete
                 </button>
               </td>

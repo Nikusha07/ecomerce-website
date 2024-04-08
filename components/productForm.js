@@ -4,7 +4,8 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { UploadIcon } from "@/public/icons/uploadIcon";
 import Spinner from "./Spinner";
- 
+import { ReactSortable } from "react-sortablejs"; 
+
 export default function ProductForm({
   images:existedImages,
   _id,
@@ -63,6 +64,9 @@ export default function ProductForm({
       setIsUploading(false);
     }
   }
+  function updateImagesOrder(images){
+    setImages(images)
+  }
   return (
     <div className="flex flex-col justify-start">
       <form onSubmit={handleSubmit}>
@@ -76,7 +80,8 @@ export default function ProductForm({
         />
         <label>Images</label>
         <div className="mb-2 flex gap-2">
-          
+          <ReactSortable 
+          className="flex flex-row gap-2" list={images} setList={updateImagesOrder}>
           {!!images?.length && images.map(link => (
             <div key={link}>
               <img
@@ -86,6 +91,7 @@ export default function ProductForm({
               />
             </div>
           ))}
+          </ReactSortable>
           {isUploading &&(
             <div className="h-24 flex items-center">
               <Spinner/>
