@@ -10,13 +10,18 @@
   },
   "dependencies": {
     "@auth/mongodb-adapter": "^2.5.2",
+    "@aws-sdk/client-s3": "^3.550.0",
     "axios": "^1.6.8",
+    "mime-types": "^2.1.35",
     "mongodb": "^6.5.0",
     "mongoose": "^8.3.0",
+    "multiparty": "^4.2.3",
     "next": "14.1.4",
     "next-auth": "^4.24.7",
     "react": "^18",
     "react-dom": "^18",
+    "react-spinners": "^0.13.8",
+    "sortablejs": "^1.15.2",
     "styled-components": "^6.1.8"
   },
   "devDependencies": {

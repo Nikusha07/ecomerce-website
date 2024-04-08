@@ -18,7 +18,6 @@ export default function EditPageProduct() {
 
         const segments = window.location.pathname.split('/');
         const index = parseInt(segments[segments.length - 1]);
-        console.log("Index:", index);
 
         axios.get(`/api/product?id=${id}`)
             .then(response => {

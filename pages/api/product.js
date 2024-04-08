@@ -10,12 +10,13 @@ export default async function handle(req, res) {
         res.json(await Product.find());
     } else if (method === 'POST') {
         try {
-            const { title, description, price } = req.body;
+            const { title, description, price, images } = req.body;
 
             const productDoc = await Product.create({
                 title,
                 description,
-                price
+                price,
+                images // Assuming images is an array of image URLs
             });
 
             await productDoc.save();
@@ -27,9 +28,9 @@ export default async function handle(req, res) {
         }
     } else if (method === 'PUT') {
         try {
-            const { _id, title, description, price } = req.body;
+            const { _id, title, description, price, images } = req.body;
 
-            await Product.updateOne({ _id }, { title, description, price });
+            await Product.updateOne({ _id }, { title, description, price, images });
 
             res.json(true);
         } catch (error) {
