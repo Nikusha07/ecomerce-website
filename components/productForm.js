@@ -68,7 +68,7 @@ export default function ProductForm({
     setImages(images)
   }
   return (
-    <div className="flex flex-col justify-start">
+    <div className="flex flex-col justify-start h-screen">
       <form onSubmit={handleSubmit}>
         {error && <p className="text-red-600">{error}</p>}
         <label>Product name</label>
