@@ -6,14 +6,12 @@ const InputComponent = ({ placeholder, value, height, onChange }) => {
   const inputStyles = {
     fontSize: '20px',
     borderWidth: '2px',
-    marginBottom: '4px',
     borderStyle: 'solid',
     borderColor: isFocused ? '#3182ce' : '#8b8787',
     borderRadius: '0.375rem',
     padding: '0.25rem',
     width: '100%',
     outline: 'none',
-    marginBottom: '10px',
     height: height || 'auto', // Set height to 'auto' if not provided
   };
 
