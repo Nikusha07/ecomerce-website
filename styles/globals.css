@@ -14,17 +14,27 @@
 }
 
 table.basic {
-  @apply w-full;
+  width: 100%;
 }
 
-table.basic thead tr td{
-  @apply bg-blue-100;
+table.basic thead tr td {
+  background-color: #BFDBFE;
 }
 
-table.basic tr td{
-  @apply border border-gray-400 p-1;
+
+table.basic tr td {
+  border: 1px solid #CBD5E0; 
+  padding: 0.5rem;
 }
 
+
+.text-blue-700 {
+  color: #1f71ce; 
+  font-size: 20px;
+  line-height: 1.5; 
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
 label {
-  @apply text-blue-700 text-[20px] leading-6 font-[600] 
+  @apply text-blue-700 text-[20px] leading-6 font-[600] mb-2
 }
