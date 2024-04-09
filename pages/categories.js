@@ -6,17 +6,18 @@ import axios from "axios";
 export default function Categories() {
   const [name, setName] = useState("");
   const [error, setError] = useState("");
+  const [parentCategory, setParentCategory] = useState(null); 
   const [categories, setCategories] = useState([]);
-  
 
   async function saveCategory(ev) {
     ev.preventDefault();
     try {
-      const response = await axios.post("/api/categories", { name });
+      const response = await axios.post("/api/categories", { name, parentCategory });
       console.log(response.data);
       setName("");
-      // Fetch categories again after adding a new category
-      fetchCategories();
+      setParentCategory(null);
+      fetchCategories(); 
+      setError(""); 
     } catch (error) {
       console.error("Error saving category:", error);
       setError("An error occurred while saving the category.");
@@ -26,7 +27,7 @@ export default function Categories() {
   async function fetchCategories() {
     try {
       const response = await axios.get("/api/categories");
-      setCategories(response.data); // Update categories state with fetched data
+      setCategories(response.data);
     } catch (error) {
       console.error("Error fetching categories:", error);
       setError("An error occurred while fetching categories.");
@@ -34,9 +35,8 @@ export default function Categories() {
   }
 
   useEffect(() => {
-    // Fetch categories when the component mounts
     fetchCategories();
-  }, []); // Empty dependency array to run the effect only once on mount
+  }, []);
 
   return (
     <Layout>
@@ -50,12 +50,12 @@ export default function Categories() {
           onChange={(e) => setName(e.target.value)}
           placeholder={"category name"}
         />
-        <select>
+        <select onChange={e => setParentCategory(e.target.value)} value={parentCategory || ""}>
           <option value="">no parent categories</option>
           {categories.length > 0 &&
             categories.map((category) => (
-              <option key={category._id}>
-              {category.name}
+              <option key={category._id} value={category._id}>
+                {category.name}
               </option>
             ))}
         </select>
@@ -65,6 +65,8 @@ export default function Categories() {
         <thead>
           <tr>
             <th>Name</th>
+            <th>Parent</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -72,6 +74,11 @@ export default function Categories() {
             categories.map((category) => (
               <tr key={category._id}>
                 <td>{category.name}</td>
+                <td>{category?.parent?.name}</td>
+                <td>
+                    <button className="btn-primary mr-1">edit</button>
+                    <button className="btn-primary ">delete</button>
+                </td>
               </tr>
             ))}
         </tbody>

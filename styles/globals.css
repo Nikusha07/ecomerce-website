@@ -26,5 +26,5 @@ table.basic tr td{
 }
 
 label {
-  @apply text-blue-700 text-[20px] leading-6 font-[600]
+  @apply text-blue-700 text-[20px] leading-6 font-[600] 
 }
