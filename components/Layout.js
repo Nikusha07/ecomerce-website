@@ -16,7 +16,7 @@ function Layout({ children }) {
     );
   }
   return (
-    <div className="grid grid-cols-5">
+    <div className="grid grid-cols-5 h-screen">
       <div className="col-span-1">
         <Nav />
       </div>

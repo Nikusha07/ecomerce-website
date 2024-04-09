@@ -17,20 +17,20 @@ export default function Nav() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-between h-full gap-5 p-4 bg-gray-900">
+    <div className="flex flex-col items-center h-full gap-5 p-4 bg-gray-900">
       <div
-        className={`flex items-center gap-2 text-white cursor-pointer ${
-          pathname === "/ecomerce" ? "bg-white text-blue-500 rounded-lg" : ""
+        className={`flex items-center gap-2 text-white mb-5 cursor-pointer ${
+          pathname === "/ecomerce" ? "bg-white text-blue-600 rounded-lg" : ""
         }`}
         onClick={() => handleLinkClick("/ecomerce")}
       >
         <EcomerceIcon/>
         ecomerce
       </div>
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-5 pl-[60px]">
         <div
-          className={`flex items-center gap-2 text-white cursor-pointer ${
-            pathname === "/" ? "bg-white text-blue-500 rounded-lg" : ""
+          className={`inline-flex items-center gap-2 text-white cursor-pointer p-2 ${
+            pathname === "/" ? "bg-white text-blue-600 rounded-lg pr-[150px] " : ""
           }`}
           onClick={() => handleLinkClick("/")}
         >
@@ -38,7 +38,7 @@ export default function Nav() {
           dashboard
         </div>
         <div
-          className={`flex items-center gap-2 text-white cursor-pointer ${
+          className={`flex items-center gap-2 text-white cursor-pointer p-2 ${
             pathname === "/orders" ? "bg-white text-blue-500 rounded-lg" : ""
           }`}
           onClick={() => handleLinkClick("/orders")}
@@ -47,8 +47,8 @@ export default function Nav() {
           orders
         </div>
         <div
-          className={`flex items-center gap-2 text-white cursor-pointer ${
-            pathname === "/product" ? "bg-white text-blue-500 rounded-lg" : ""
+          className={`inline-flex items-center gap-2 text-white cursor-pointer p-2 ${
+            pathname === "/product" ? "bg-white text-blue-600 rounded-lg pr-[160px]" : ""
           }`}
           onClick={() => handleLinkClick("/product")}
         >
@@ -56,8 +56,8 @@ export default function Nav() {
           products
         </div>
         <div
-          className={`flex items-center gap-2 text-white cursor-pointer ${
-            pathname === "/settings" ? "bg-white text-blue-500 rounded-lg" : ""
+          className={`flex items-center gap-2 text-white cursor-pointer p-2 ${
+            pathname === "/settings" ? "bg-white text-blue-600 rounded-lg" : ""
           }`}
           onClick={() => handleLinkClick("/settings")}
         >
