@@ -78,8 +78,8 @@ export default function ProductForm({
           placeholder="Product Name"
           type="text"
         />
-        <label>Images</label>
-        <div className="mb-2 flex gap-2">
+        <label >Images</label>
+        <div className="mb-2 mt-2 flex gap-2">
           <ReactSortable 
           className="flex flex-row gap-2" list={images} setList={updateImagesOrder}>
           {!!images?.length && images.map(link => (
@@ -116,7 +116,7 @@ export default function ProductForm({
           placeholder="Price"
           type="number"
         />
-        <button type="submit" className="btn-primary">
+        <button type="submit" className="btn-primary mt-2">
           Save
         </button>
       </form>
