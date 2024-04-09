@@ -1,3 +1,4 @@
+import { CategoryIcons } from "@/public/icons/CategoryIcons";
 import { DashboardIcon } from "@/public/icons/dashboard";
 import { EcomerceIcon } from "@/public/icons/ecomerceIcon";
 import { OrdersIcon } from "@/public/icons/orders";
@@ -64,6 +65,16 @@ export default function Nav() {
           <SettingIcon />
           settings
         </div>
+        <div
+          className={`flex items-center gap-2 text-white cursor-pointer p-2  ${
+            pathname === "/categories" ? "bg-white text-blue-600 rounded-lg pr-[150px] " : ""
+          }`}
+          onClick={() => handleLinkClick("/categories")}
+        >
+          <CategoryIcons />
+          Category
+        </div>
+
       </div>
     </div>
   );
