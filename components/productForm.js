@@ -12,8 +12,10 @@ export default function ProductForm({
   title: existedTitle,
   description: existedDescription,
   price: existedPrice,
+  category:assignedCategory,
 }) {
   const [title, setTitle] = useState(existedTitle || "");
+  const [category , setCategory] = useState(assignedCategory ||"")
   const [images , setImages] = useState(existedImages || []);
   const [isUploading, setIsUploading] = useState(false);
   const [description, setDescription] = useState(existedDescription || "");
@@ -21,6 +23,11 @@ export default function ProductForm({
   const router = useRouter();
   const [error, setError] = useState("");
   const [goToProduct, setGoToProducts] = useState(false);
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    axios.get('/api/categories').then(response => {setCategories(response.data)
+  }) } , [])
 
   const handleInputChange = (event, setValue) => {
     setValue(event.target.value);
@@ -32,7 +39,8 @@ export default function ProductForm({
       title,
       description,
       price,
-      images
+      images,
+      category
     };
 
     if (_id) {
@@ -78,7 +86,18 @@ export default function ProductForm({
           placeholder="Product Name"
           type="text"
         />
-        <label >Images</label>
+        <div>
+          <label> Categories </label>
+          <select value={category} onChange={e => setCategory(e.target.value)}>
+            <option value="">Select Category</option>
+            {categories.length > 0 && categories.map(category =>(
+              <option key={category._id} value={category._id}>
+                {category.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <label> Images</label>
         <div className="mb-2 mt-2 flex gap-2">
           <ReactSortable 
           className="flex flex-row gap-2" list={images} setList={updateImagesOrder}>
