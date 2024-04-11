@@ -9,6 +9,7 @@ export default function Product() {
   const [products, setProducts] = useState([]);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [productIdToDelete, setProductIdToDelete] = useState(null);
+  const [productTitleToDelete, setProductTitleToDelete] = useState("");
 
   useEffect(() => {
     axios
@@ -31,14 +32,16 @@ export default function Product() {
     }
   };
 
-  const showDeleteConfirmation = (id) => {
+  const showDeleteConfirmation = (id, title) => {
     setShowConfirmation(true);
     setProductIdToDelete(id);
+    setProductTitleToDelete(title);
   };
 
   const hideDeleteConfirmation = () => {
     setShowConfirmation(false);
     setProductIdToDelete(null);
+    setProductTitleToDelete("");
   };
 
   return (
@@ -46,7 +49,7 @@ export default function Product() {
       {showConfirmation && (
         <div className="fixed top-0 left-0 w-full h-full bg-gray-600 bg-opacity-50 flex justify-center items-center">
           <div className="bg-white p-4 rounded shadow">
-            <p>Are you sure you want to delete this product?</p>
+            <p>Are you sure you want to delete "{productTitleToDelete}"?</p>
             <div className="flex justify-end mt-4">
               <button
                 className="bg-red-500 text-white px-4 py-2 rounded mr-2"
@@ -92,7 +95,7 @@ export default function Product() {
                   </h1>
                 </Link>
                 <button
-                  onClick={() => showDeleteConfirmation(product._id)}
+                  onClick={() => showDeleteConfirmation(product._id, product.title)}
                   className="bg-red-500 inline-flex items-center gap-[5px] flex-row text-white rounded-md py-1 px-2"
                 >
                   <DeleteIcon />
