@@ -9,6 +9,8 @@ export default function Categories() {
   const [error, setError] = useState("");
   const [parentCategory, setParentCategory] = useState("");
   const [categories, setCategories] = useState([]);
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [categoryToDelete, setCategoryToDelete] = useState(null);
 
   async function saveCategory(ev) {
     ev.preventDefault();
@@ -23,8 +25,8 @@ export default function Categories() {
           await axios.put("/api/categories", data);
           setName("");
           setParentCategory("");
-          setEditedCategories(null); // Clear edited category
-          fetchCategories(); // Fetch categories again to refresh data
+          setEditedCategories(null);
+          fetchCategories();
           setError("");
         } catch (error) {
           console.error("Error updating category:", error);
@@ -66,18 +68,44 @@ export default function Categories() {
     setParentCategory(category.parent?._id || "");
   }
 
-  async function deleteCategory(category) {
-    try {
-      await axios.delete(`/api/categories/${category}`); // Corrected URL construction
-      fetchCategories(); // Assuming this function fetches the updated list of categories after deletion
-      setError(""); // Clearing any previous errors
-    } catch (error) {
-      console.error("Error deleting category:", error);
-      setError("An error occurred while deleting the category.");
+  async function deleteCategory() {
+    if (categoryToDelete) {
+      try {
+        console.log("Deleting category with ID:", categoryToDelete._id); 
+        await axios.delete(`/api/categories?id=${categoryToDelete._id}`);
+        fetchCategories();
+        setError("");
+        setShowConfirmation(false);
+      } catch (error) {
+        console.error("Error deleting category:", error);
+        setError("An error occurred while deleting the category.");
+      }
     }
   }
+
   return (
     <Layout>
+      {showConfirmation && (
+        <div className="fixed top-0 left-0 w-full h-full bg-gray-600 bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white p-4 rounded shadow">
+            <p>Are you sure you want to delete "{categoryToDelete?.name}"?</p>
+            <div className="flex justify-end mt-4">
+              <button
+                className="bg-red-500 text-white px-4 py-2 rounded mr-2"
+                onClick={deleteCategory}
+              >
+                Yes
+              </button>
+              <button
+                className="bg-gray-300 px-4 py-2 rounded"
+                onClick={() => setShowConfirmation(false)}
+              >
+                No
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       <h1>Categories</h1>
       <label>
         {editedCategory
@@ -126,7 +154,10 @@ export default function Categories() {
                   Edit
                 </button>
                 <button
-                  onClick={() => deleteCategory(category)}
+                  onClick={() => {
+                    setShowConfirmation(true);
+                    setCategoryToDelete(category);
+                  }}
                   className="btn-primary"
                 >
                   Delete

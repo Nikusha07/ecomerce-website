@@ -12,7 +12,7 @@ const InputComponent = ({ placeholder, value, height, onChange }) => {
     padding: '0.25rem',
     width: '100%',
     outline: 'none',
-    height: height || 'auto', // Set height to 'auto' if not provided
+    height: height || 'auto',
   };
 
   return (

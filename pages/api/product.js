@@ -16,7 +16,7 @@ export default async function handle(req, res) {
                 title,
                 description,
                 price,
-                images // Assuming images is an array of image URLs
+                images
             });
 
             await productDoc.save();
