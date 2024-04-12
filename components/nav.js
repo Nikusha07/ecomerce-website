@@ -6,6 +6,8 @@ import { EcomerceIcon } from "@/public/icons/ecomerceIcon";
 import { OrdersIcon } from "@/public/icons/orders";
 import { ProductIcon } from "@/public/icons/product";
 import { SettingIcon } from "@/public/icons/setting";
+import { LogoutIcon } from "@/public/icons/logoutIcon";
+import { signOut } from "next-auth/react";
 
 export default function Nav() {
   const router = useRouter();
@@ -17,7 +19,7 @@ export default function Nav() {
     router.push(path);
   };
 
-  const NavLink = ({ path, text, Icon }) => (
+  const NavLink = ({ path, text, Icon, onClick }) => (
     <div
       className={`flex items-center gap-2 text-white cursor-pointer p-2 rounded-lg ${
         pathname === path ||
@@ -25,7 +27,12 @@ export default function Nav() {
           ? "bg-red-400 text-blue-600"
           : ""
       }`}
-      onClick={() => handleLinkClick(path)}
+      onClick={() => {
+        if (onClick) {
+          onClick();
+        }
+        handleLinkClick(path);
+      }}
     >
       <Icon />
       {text}
@@ -39,8 +46,9 @@ export default function Nav() {
         <NavLink path="/" text="Dashboard" Icon={DashboardIcon} />
         <NavLink path="/orders" text="Orders" Icon={OrdersIcon} />
         <NavLink path="/product" text="Products" Icon={ProductIcon} />
-        <NavLink path="/settings" text="Settings" Icon={SettingIcon} />
         <NavLink path="/categories" text="Categories" Icon={CategoryIcons} />
+        <NavLink path="/settings" text="Settings" Icon={SettingIcon} />
+        <NavLink text="log-out" onClick={() => signOut()} Icon={LogoutIcon} ></NavLink>
       </div>
     </div>
   );

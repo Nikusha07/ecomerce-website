@@ -11,6 +11,11 @@
 
 .btn-primary{
   @apply bg-blue-900 text-white px-4 py-1 rounded-md;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-primary:hover {
+  @apply bg-blue-500 text-gray-100; 
 }
 
 table.basic {
@@ -37,4 +42,13 @@ table.basic tr td {
 }
 label {
   @apply text-blue-700 text-[20px] leading-6 font-[600] mb-2
+}
+
+.Property-btn {
+  @apply bg-gray-500 text-white px-4 py-1 rounded-md text-sm mb-2;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.Property-btn:hover {
+  @apply bg-gray-700 text-gray-100; 
 }
