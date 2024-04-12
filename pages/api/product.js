@@ -11,29 +11,30 @@ export default async function handle(req, res) {
             const products = await Product.find();
             res.status(200).json(products);
         } else if (method === 'POST') {
-            const { title, description, price, images, category } = req.body;
+            const { title, description, price, images, category, properties } = req.body;
 
             const product = new Product({
                 title,
                 description,
                 price,
                 images,
-                category
+                category,
+                properties
             });
 
             const savedProduct = await product.save();
 
             res.status(201).json({ success: true, product: savedProduct });
         } else if (method === 'PUT') {
-            const { _id, title, description, price, images, category } = req.body;
+            const { _id, title, description, price, images, category, properties } = req.body;
 
             const updatedProduct = await Product.findByIdAndUpdate(
                 _id,
-                { title, description, price, images, category },
+                { title, description, price, images, category, properties },
                 { new: true }
             );
 
-            res.status(200).json(updatedProduct);
+            res.status(200).json({ success: true, product: updatedProduct });
         } else if (method === 'DELETE') {
             const { id } = req.query;
 

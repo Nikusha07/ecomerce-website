@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const InputComponent = ({ placeholder, value, height, onChange }) => {
+const InputComponent = ({ placeholder, value, height, onChange ,className }) => {
   const [isFocused, setIsFocused] = useState(false);
 
   const inputStyles = {
@@ -17,6 +17,7 @@ const InputComponent = ({ placeholder, value, height, onChange }) => {
 
   return (
     <input
+      className={className}
       style={inputStyles}
       placeholder={placeholder}
       value={value}
